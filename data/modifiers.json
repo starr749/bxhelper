@@ -1,5 +1,5 @@
 {
-  "str": {
+  "Strength": {
     "3": "-3 to hit, damage, and opening doors",
     "4": "-2 to hit, damage, and opening doors",
     "5": "-2 to hit, damage, and opening doors",
@@ -17,7 +17,7 @@
     "17": "+2 to hit, damage, and opening doors",
     "18": "+3 to hit, damage, and opening doors"
   },
-  "int": {
+  "Intelligence": {
     "3": "Has trouble with speaking, cannot read or write",
     "4": "Cannot read or write Common",
     "5": "Cannot read or write Common",
@@ -35,7 +35,7 @@
     "17": "Reads and writes native languages, +2 added languages",
     "18": "Reads and writes native languages, +3 added languages"
   },
-  "wis": {
+  "Wisdom": {
     "3": "-3 on magic based saving throws",
     "4": "-2 on magic based saving throws",
     "5": "-2 on magic based saving throws",
@@ -53,7 +53,7 @@
     "17": "+2 on magic based saving throws",
     "18": "+3 on magic based saving throws"
   },
-  "dex": {
+  "Dexterity": {
     "3": "-3 on ranged 'to hit' rolls, +3 penalty to AC, -2 Initiative",
     "4": "-2 on ranged 'to hit' rolls, +2 penalty to AC, -1 Initiative",
     "5": "-2 on ranged 'to hit' rolls, +2 penalty to AC, -1 Initiative",
@@ -71,7 +71,7 @@
     "17": "+2 on ranged 'to hit' rolls, -2 bonus to AC, +1 Initiative",
     "18": "+3 on ranged 'to hit' rolls, -3 bonus to AC, +2 Initiative"
   },
-  "con": {
+  "Constitution": {
     "3": "-3 points per hit die",
     "4": "-2 points per hit die",
     "5": "-2 points per hit die",
@@ -89,7 +89,7 @@
     "17": "+2 points per hit die",
     "18": "+3 points per hit die"
   },
-  "cha": {
+  "Charisma": {
     "3": "-2 to Reactions, Maximum number of retainers: 1, Retainer morale: 4",
     "4": "-1 to Reactions, Maximum number of retainers: 2, Retainer morale: 5",
     "5": "-1 to Reactions, Maximum number of retainers: 2, Retainer morale: 5",

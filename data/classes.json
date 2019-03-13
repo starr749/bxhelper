@@ -1,0 +1,53 @@
+{
+  "Fighter": {
+    "Prime-Requisite": [
+      "Strength"
+    ],
+    "Requirements": {}
+  },
+  "Magic-User": {
+    "Prime-Requisite": [
+      "Intelligence"
+    ],
+    "Requirements": {}
+  },
+  "Cleric": {
+    "Prime-Requisite": [
+      "Wisdom"
+    ],
+    "Requirements": {}
+  },
+  "Thief": {
+    "Prime-Requisite": [
+      "Dexterity"
+    ],
+    "Requirements": {}
+  },
+  "Dwarf": {
+    "Prime-Requisite": [
+      "Strength"
+    ],
+    "Requirements": {
+      "Constitution": 9
+    }
+  },
+  "Halfling": {
+    "Prime-Requisite": [
+      "Dexterity",
+      "Strength"
+    ],
+    "Requirements": {
+      "Constitution": 9,
+      "Dexterity": 9
+    }
+  },
+  "Elf": {
+    "Prime-Requisite": [
+      "Intelligence",
+      "Strength"
+    ],
+    "Requirements": {
+      "Intelligence": 9
+    }
+  }
+}
