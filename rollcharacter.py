@@ -13,26 +13,16 @@ class_list = [class_name for class_name in class_data.keys()]
 recommended_classes = {}
 
 
-def main(heroic):
+def main(heroic, loaded_character=None):
 
     ability_dict = {}
     ability_scores = {}
     headings = ['Attribute', 'Score', 'Dice Rolls', 'Modifier', '', 'Class', 'Bonus']
-    attributes = [att for att in mod_list.keys()]
-    scores = []
-    dice_rolls = []
-    modifiers = []
-    for att in attributes:
-        if heroic:
-            roll = dice.roll('4d6^3')
-        else:
-            roll = dice.roll('3d6')
-        scores.append(sum(roll))
-        dice_rolls.append(roll)
-        modifiers.append(mod_list[att][str(sum(roll))])
 
-        ability_dict.setdefault(sum(roll), []).append(att)
-        ability_scores[att] = sum(roll)
+    if loaded_character is not None:
+        attributes, dice_rolls, modifiers, scores = pull_stats_from_char(ability_dict, ability_scores, loaded_character)
+    else:
+        attributes, dice_rolls, modifiers, scores = roll_stats(ability_dict, ability_scores, heroic)
 
     tab = tt.Texttable()
     tab.header(headings)
@@ -59,6 +49,40 @@ def main(heroic):
     print(s)
 
     recommend_classes(scores)
+
+
+def roll_stats(ability_dict, ability_scores, heroic):
+    attributes = [att for att in mod_list.keys()]
+    scores = []
+    dice_rolls = []
+    modifiers = []
+    for att in attributes:
+        if heroic:
+            roll = dice.roll('4d6^3')
+        else:
+            roll = dice.roll('3d6')
+        scores.append(sum(roll))
+        dice_rolls.append(roll)
+        modifiers.append(mod_list[att][str(sum(roll))])
+
+        ability_dict.setdefault(sum(roll), []).append(att)
+        ability_scores[att] = sum(roll)
+    return attributes, dice_rolls, modifiers, scores
+
+
+def pull_stats_from_char(ability_dict, ability_scores, loaded_character):
+    attributes = [att for att in mod_list.keys()]
+    scores = []
+    dice_rolls = []
+    modifiers = []
+    for att in attributes:
+        scores.append(loaded_character[att])
+        dice_rolls.append("-")
+        modifiers.append(mod_list[att][str(loaded_character[att])])
+
+        ability_dict.setdefault(loaded_character[att], []).append(att)
+        ability_scores[att] = loaded_character[att]
+    return attributes, dice_rolls, modifiers, scores
 
 
 def recommend_classes(scores):
@@ -123,13 +147,21 @@ def calc_stat_bonus(class_name, ability_scores, class_data):
         return "No bonus to XP"
 
 
+def load_json_character(filepath):
+    with open(filepath) as json_character_file:
+        return json.load(json_character_file)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-hero", "--heroic", help="Rolls stats with 4d6 drop lowest", action="store_true")
+    parser.add_argument("-f", "--filepath", "--file", help="Do not roll stats, instead load attribute stats from json file")
 
     args = parser.parse_args()
 
-    # heroic = args.heroic or False
-
-    main(args.heroic)
+    if args.filepath:
+        character = load_json_character(args.filepath)
+        main(args.heroic, character)
+    else:
+        main(args.heroic)
