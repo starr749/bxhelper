@@ -1,4 +1,4 @@
-import dice
+import dice, argparse
 import texttable as tt
 import json
 import math
@@ -13,7 +13,7 @@ class_list = [class_name for class_name in class_data.keys()]
 recommended_classes = {}
 
 
-def main():
+def main(heroic):
 
     ability_dict = {}
     ability_scores = {}
@@ -23,7 +23,10 @@ def main():
     dice_rolls = []
     modifiers = []
     for att in attributes:
-        roll = dice.roll('3d6')
+        if heroic:
+            roll = dice.roll('4d6^3')
+        else:
+            roll = dice.roll('3d6')
         scores.append(sum(roll))
         dice_rolls.append(roll)
         modifiers.append(mod_list[att][str(sum(roll))])
@@ -90,11 +93,19 @@ def calc_stat_bonus(class_name, ability_scores, class_data):
 
     bonuses = 0
     if len(class_data[class_name]["Prime-Requisite"]) == 2:
-        for att in class_data[class_name]["Prime-Requisite"]:
-            if ability_scores[att] >= 13:
+
+        # stupid elf having special prime-requisites making it extra hard to earn xp
+        if class_name == 'Elf':
+            if ability_scores["Intelligence"] >= 13 and ability_scores["Strength"] >= 13:
                 bonuses += 1
-            if ability_scores[att] <= 8:
-                bonuses -= 1
+                if ability_scores["Intelligence"] >= 16:
+                    bonuses += 1
+        else:
+            for att in class_data[class_name]["Prime-Requisite"]:
+                if ability_scores[att] >= 13:
+                    bonuses += 1
+                if ability_scores[att] <= 8:
+                    bonuses -= 1
 
     if len(class_data[class_name]["Prime-Requisite"]) == 1:
         att = class_data[class_name]["Prime-Requisite"][0]
@@ -111,4 +122,12 @@ def calc_stat_bonus(class_name, ability_scores, class_data):
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-hero", "--heroic", help="Rolls stats with 4d6 drop lowest", action="store_true")
+
+    args = parser.parse_args()
+
+    # heroic = args.heroic or False
+
+    main(args.heroic)
