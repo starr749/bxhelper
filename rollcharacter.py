@@ -94,7 +94,9 @@ def calc_stat_bonus(class_name, ability_scores, class_data):
     bonuses = 0
     if len(class_data[class_name]["Prime-Requisite"]) == 2:
 
-        # stupid elf having special prime-requisites making it extra hard to earn xp
+        # Stupid elf having special prime-requisites making it extra hard to earn xp
+        # I'm adding this logic that completely breaks my nice clean data abstraction
+        # But I don't have to like it.
         if class_name == 'Elf':
             if ability_scores["Intelligence"] >= 13 and ability_scores["Strength"] >= 13:
                 bonuses += 1
