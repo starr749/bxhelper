@@ -4,10 +4,10 @@ import json
 import math
 from collections import OrderedDict
 
-with open('data/modifiers.json') as json_file:
+with open('data/character/modifiers.json') as json_file:
     mod_list = json.load(json_file, object_pairs_hook=OrderedDict)
 
-with open('data/classes.json') as json_class_file:
+with open('data/character/classes.json') as json_class_file:
     class_data = json.load(json_class_file, object_pairs_hook=OrderedDict)
 
 class_list = [class_name for class_name in class_data.keys()]
@@ -157,7 +157,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-hero", "--heroic", help="Rolls stats with 4d6 drop lowest", action="store_true")
-    parser.add_argument("-f", "--filepath", "--file", help="Do not roll stats, instead load attribute stats from json file")
+    parser.add_argument("-f", "--filepath", "--file",
+                        help="Do not roll stats, instead load attribute stats from json file")
 
     args = parser.parse_args()
 
