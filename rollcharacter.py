@@ -2,12 +2,13 @@ import dice, argparse
 import texttable as tt
 import json
 import math
+from collections import OrderedDict
 
 with open('data/modifiers.json') as json_file:
-    mod_list = json.load(json_file)
+    mod_list = json.load(json_file, object_pairs_hook=OrderedDict)
 
 with open('data/classes.json') as json_class_file:
-    class_data = json.load(json_class_file)
+    class_data = json.load(json_class_file, object_pairs_hook=OrderedDict)
 
 class_list = [class_name for class_name in class_data.keys()]
 recommended_classes = {}
