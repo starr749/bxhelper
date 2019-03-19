@@ -9,7 +9,7 @@ def roll_encounter(wandering_monsters):
 
 
 def get_level():
-    return input('Enter the encounter level: ')
+    return input('Enter the encounter level (default is 1): ') or 1
 
 
 def get_surprise_possible():
@@ -107,22 +107,64 @@ def print_reaction(reaction, roll, modifier):
     print(tab.draw())
 
 
-def main(file_path=None):
+def print_reaction_table():
+    headings = ['Dice Roll', "Reaction"]
+
+    tab = tt.Texttable()
+    tab.set_max_width(150)
+    align = ['c' for header in headings]
+    tab.set_cols_align(align)
+
+    tab.header(headings)
+    tab.add_row(['2', 'Immediate Attack'])
+    tab.add_row(['3-5', 'Hostile, possible attack'])
+    tab.add_row(['6-8', 'Uncertain, monster confused'])
+    tab.add_row(['9-11', 'No attack, monster leaves or considers offers'])
+    tab.add_row(['12', 'Enthusiastic friendship'])
+
+    print(tab.draw())
+
+
+def print_encounter_table(encounters):
+    headings = ['Dice Roll']
+    headings.extend([key for key in encounters["1"].keys() if key != 'Description'])
+
+    tab = tt.Texttable()
+    tab.set_max_width(150)
+    align = ['c' for header in headings]
+    tab.set_cols_align(align)
+
+    tab.header(headings)
+
+    for k, v in encounters.items():
+        row = [k]
+        for key, value in v.items():
+            if key != 'Description':
+                row.append(value)
+        tab.add_row(row)
+
+    print(tab.draw())
+
+
+def main(command, file_path=None):
     if file_path is None:
         level = get_level()
         encounters = load_file(default_encounter_file.format(level))
     else:
         encounters = load_file(file_path)
 
-    chance = get_encounter_chance()
-    surprise = get_surprise_possible()
-
-    roll = dice.roll('1d6')
-
-    if sum(roll) > chance:
-        print("Roll: {0} No encounter!".format(roll))
+    if command == 'print':
+        print_encounter_table(encounters)
     else:
-        print_table(roll_encounter(encounters), surprise)
+        chance = get_encounter_chance()
+        surprise = get_surprise_possible()
+
+        roll = dice.roll('1d6')
+
+        if sum(roll) > chance:
+            print("Roll: {0} No encounter!".format(roll))
+        else:
+            print_table(roll_encounter(encounters), surprise)
 
 
 if __name__ == "__main__":
@@ -133,14 +175,22 @@ if __name__ == "__main__":
 
     parser.add_argument("-r", "--reaction", help="Make a Monster reaction roll", action="store_true")
 
+    parser.add_argument("-rt", "--reactiontable", help="Prints the Reaction Table", action="store_true")
+
+    parser.add_argument("-et", "--encountertable", help="Prints the Reaction Table", action="store_true")
+
     args = parser.parse_args()
 
     if args.reaction:
         reaction_roll()
         exit()
 
-    if args.file:
+    if args.reactiontable:
+        print_reaction_table()
+        exit()
+
+    if args.encountertable:
         # TODO add file validation here
-        main(args.file)
+        main('print', args.file)
     else:
-        main()
+        main(args.file)

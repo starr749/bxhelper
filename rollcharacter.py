@@ -1,7 +1,6 @@
 import dice, argparse
 import texttable as tt
 import json
-import math
 from collections import OrderedDict
 
 with open('data/character/modifiers.json') as json_file:
