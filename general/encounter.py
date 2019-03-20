@@ -5,7 +5,9 @@ default_encounter_file = 'data/encounters/level{0}.json'
 
 
 def roll_encounter(wandering_monsters):
-    return wandering_monsters[str(sum(dice.roll('1d20')))]
+    # This way the dice roll will always be the same size as the encounter table
+    dice_roll = '1d{0}'.format(len(wandering_monsters.keys()))
+    return wandering_monsters[str(sum(dice.roll(dice_roll)))]
 
 
 def get_level():
@@ -61,13 +63,18 @@ def print_table(encounter, surprise_possible):
     tab.header(headings)
     tab.add_row(row)
 
+    desc_tab = create_description_table(encounter)
+
+    print(tab.draw())
+    print(desc_tab.draw())
+
+
+def create_description_table(encounter):
     descTab = tt.Texttable()
     descTab.set_max_width(150)
     descTab.header(['Description'])
     descTab.add_row([encounter['Description']])
-
-    print(tab.draw())
-    print(descTab.draw())
+    return descTab
 
 
 def reaction_roll():
@@ -165,6 +172,13 @@ def main(command, file_path=None):
             print("Roll: {0} No encounter!".format(roll))
         else:
             print_table(roll_encounter(encounters), surprise)
+
+
+def test_description(test):
+    level = get_level()
+    encounters = load_file(default_encounter_file.format(level))
+    tab = create_description_table(encounters[test])
+    print(tab.draw())
 
 
 if __name__ == "__main__":

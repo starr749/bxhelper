@@ -155,7 +155,7 @@ def load_json_character(filepath):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-hero", "--heroic", help="Rolls stats with 4d6 drop lowest", action="store_true")
+    parser.add_argument("-hero", "--heroic", help="Rolls stats with 4d6 drop lowest instead of flat 3d6", action="store_true")
     parser.add_argument("-f", "--filepath", "--file",
                         help="Do not roll stats, instead load attribute stats from json file")
 
