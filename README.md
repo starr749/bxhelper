@@ -4,6 +4,7 @@ D&amp;D B/X utility
 ## Some quick scripts that make running Moldvay Basic a little easier
 
 ### rollcharacter.py
+```
 usage: rollcharacter.py [-h] [-hero] [-f FILEPATH]
 
 optional arguments:
@@ -12,6 +13,7 @@ optional arguments:
   -f FILEPATH, --filepath FILEPATH, --file FILEPATH
                         Do not roll stats, instead load attribute stats from
                         json file
+```
 
 This script rolls up a character using 3d6 (or optionally 4d6 drop lowest with the optional -h flag) and lists out modifiers, and potential XP bonuses.
 It loads data and pulls in modifier text, class metadata, etc from the general/data/character directory.
@@ -33,6 +35,7 @@ For example, to load the sample character in the general/data/character director
 `rollcharacter.py -f data/character/sample_character.json`
 
 ### encounter.py
+```
 usage: encounter.py [-h] [-f FILE] [-r] [-rt] [-et]
 
 optional arguments:
@@ -43,7 +46,7 @@ optional arguments:
   -rt, --reactiontable  Prints the Reaction Table
   -et, --encountertable
                         Prints the Reaction Table
-
+```
 
 Running encounter.py will prompt you for the basic questions before rolling on an encounter table.
 Level prompt refers to the level of encounter (levels 1-3 as contained in Moldvay Basic) and will roll on that corresponding table.
