@@ -55,3 +55,7 @@ You can load a custom table given it matches the format of the current JSON file
 The -r flag will roll make a reaction roll after taking in modifiers.
 
 The -rt and -et flags will print out the loaded reaction and encounter tables, respectively 
+
+## Questions
+### Why is all your data in JSON?
+Because I want you to steal it. Seriously. It took me so long to copy this stuff into this format, I don't wish to inflict that pain on anybody. JSON is a great universal format, and a lot of weirdos love javascript. If you want to use this to make your own encounter table rolling stuff in a webpage for people to use, please take it (and tell me about it).
