@@ -29,6 +29,7 @@ If you have a stat block in Json in the following format:
 ```
 You can load that file in and use those stats instead of loading them with one of the (-f [File], --filepath [File], --file [File]) args.
 For example, to load the sample character in the general/data/character directory:
+
 `rollcharacter.py -f data/character/sample_character.json`
 
 ### encounter.py
