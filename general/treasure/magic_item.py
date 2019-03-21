@@ -5,6 +5,7 @@ import dice
 
 scriptDirectory = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'tables')
 
+
 class MagicItem:
     def __init__(self, item_type=None):
         self.item_type = item_type
