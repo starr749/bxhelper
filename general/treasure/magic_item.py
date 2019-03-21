@@ -6,26 +6,44 @@ import dice
 scriptDirectory = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'tables')
 
 class MagicItem:
-    def __init__(self):
-        type = None
+    def __init__(self, item_type=None):
+        self.item_type = item_type
+
 
         with open(os.path.join(scriptDirectory, 'magic_subtable.json')) as json_class_file:
             self.magic_item_table = json.load(json_class_file, object_pairs_hook=OrderedDict)
+
+        self.item_description = self.get_item_description()
 
     def get_random_item_type(self):
         roll = dice.roll('1d%')
         for item in self.magic_item_table['item_types']:
             if sum(roll) in range(int(item[0][0]), int(item[0][1] + 1)):
-                self.type = item[1]
-        if self.type == None:
+                self.item_type = item[1]
+        if self.item_type is None:
             raise Exception('Unable to get random item type. Check magic_subtable')
 
-    def get_item_attributes(self):
-        if self.type is None:
+    def get_item_description(self):
+        if self.item_type is None:
             self.get_random_item_type()
 
+        specific_item_table = self.magic_item_table[self.item_type]
+        roll = sum(dice.roll('1d{0}'.format(len(specific_item_table))))
+        description = (specific_item_table[roll-1])[1]         # -1 because arrays start at 0
+
+        if self.item_type == 'Weapon/Armor':
+            if 'Armor' in description:
+                armor = self.roll_armor_type()
+                description = description.replace('Armor', armor + ' Armor')
+
+        return description
+
+    def roll_armor_type(self):
+        armor_roll = sum(dice.roll('1d8'))
+        for item in self.magic_item_table['Armor']:
+            if armor_roll in range(int(item[0][0]), int(item[0][1] + 1)):
+                return item[1]
 
 
 mag = MagicItem()
-mag.get_random_item_type()
-print(mag.type)
+print("{0}: {1}".format(mag.item_type, mag.item_description))

@@ -52,5 +52,42 @@
             [6, "Protection from Undead"],
             [7, "Treasure Map: location of 1,000-4,000 gp value"],
             [8, "Treasure Map: location of 1 hidden magic item"]
+          ],
+  "Ring":
+          [
+            [1, "Animal Control"],
+            [2, "Fire Resistance"],
+            [3, "Invisibility"],
+            [4, "Protection +1"],
+            [5, "Water Walking"],
+            [6, "Weakness"]
+          ],
+  "Wand/Staff/Rod":
+          [
+            [1, "Wand of Enemy Detection"],
+            [2, "Wand of Magic Detection"],
+            [3, "Wand of Paralyzation"],
+            [4, "Staff of Healing"],
+            [5, "Snake Staff"],
+            [6, "Rod of Cancellation"]
+          ],
+  "Miscellaneous Magic":
+          [
+            [1, "Bag of Devouring"],
+            [2, "Bag of Holding"],
+            [3, "Broom of Flying"],
+            [4, "Crystal Ball"],
+            [5, "Elven Cloak & Boots"],
+            [6, "Gauntlets of Ogre Power"],
+            [7, "Helm of Alignment Changing"],
+            [8, "Help of Telepathy"],
+            [9, "Medallion of ESP"],
+            [10, "Rope of Climbing"]
+          ],
+  "Armor":
+          [
+            [[1, 2], "Leather"],
+            [[3, 6], "Chain Mail"],
+            [[7, 8], "Plate Mail"]
           ]
 }
