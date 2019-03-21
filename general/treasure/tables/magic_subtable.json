@@ -1,0 +1,56 @@
+{
+  "item_types":
+          [
+            [[1, 20], "Sword"],
+            [[21, 40], "Weapon/Armor"],
+            [[41, 65], "Potion"],
+            [[66, 85], "Scroll"],
+            [[86, 90], "Ring"],
+            [[91, 95], "Wand/Staff/Rod"],
+            [[96, 100], "Miscellaneous Magic"]
+          ],
+  "Sword":
+          [
+            [1, "Sword +1"],
+            [2, "Sword +1, +2 against lycanthropes"],
+            [3, "Sword +1, +2 against spell users"],
+            [4, "Sword +1, +3 against undead"],
+            [5, "Sword +1, +3 against dragons"],
+            [6, "Sword +1, casts light on command (30' radius)"],
+            [7, "Sword +2"],
+            [8, "Sword +1, cursed"]
+          ],
+  "Weapon/Armor":
+          [
+            [1, "Arrows +1 (10 arrows)"],
+            [2, "Axe +1"],
+            [3, "Dagger +1"],
+            [4, "Mace +1"],
+            [5, "Armor +1"],
+            [6, "Shield +1"],
+            [7, "Armor & Shield (each +1)"],
+            [8, "Armor, cursed as AC 9 (looks like armor +1)"]
+          ],
+  "Potion":
+          [
+            [1, "Diminution"],
+            [2, "ESP"],
+            [3, "Gaseous Form"],
+            [4, "Growth"],
+            [5, "Healing"],
+            [6, "Invisibility"],
+            [7, "Levitation"],
+            [8, "Poison"]
+          ],
+  "Scroll":
+          [
+            [1, "Spell scroll: 1 magic-user/elf spell (any) *"],
+            [2, "Spell scroll: 2 magic-user/elf spells (any) *"],
+            [3, "Spell scroll: 3 magic-user/elf spells (any) *"],
+            [4, "Cursed scroll (affects reader immediately)"],
+            [5, "Protection from Lycanthropes"],
+            [6, "Protection from Undead"],
+            [7, "Treasure Map: location of 1,000-4,000 gp value"],
+            [8, "Treasure Map: location of 1 hidden magic item"]
+          ]
+}
