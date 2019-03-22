@@ -22,7 +22,7 @@ class MagicItem:
             raise Exception('Unable to get random item type. Check magic_subtable')
 
     def get_item_description(self):
-        if self.item_type is None:
+        if self.item_type is None or self.item_type == 'Any':
             self.get_random_item_type()
 
         specific_item_table = self.magic_item_table[self.item_type]

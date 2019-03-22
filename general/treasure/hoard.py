@@ -1,11 +1,11 @@
 import os
 import dice, json, argparse, texttable as tt
-from magic_item import MagicItem
+from .magic_item import MagicItem
 from collections import OrderedDict
 
 scriptDirectory = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'tables')
 
-class Treasure:
+class Hoard:
 
     def __init__(self, treasure_type):
         with open(os.path.join(scriptDirectory, 'treasure_table.json')) as json_class_file:
@@ -47,9 +47,9 @@ class Treasure:
         #  "Copper":  {"chance":  25, "amount":  "3d8 * 1000"}
 
         coin = self.treasure_horde[coin_type]
-        coin_existence = sum(dice.roll_min('1d%'))
+        coin_existence = sum(dice.roll('1d%'))
         if coin_existence <= coin['chance']:
-            return dice.roll(coin['amount'])
+            return int(dice.roll(coin['amount']))
         else:
             return 0
 
