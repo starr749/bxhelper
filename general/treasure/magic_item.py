@@ -68,3 +68,5 @@ class MagicItem:
             if roll in range(int(item[0][0]), int(item[0][1] + 1)):
                 return item[1]
 
+    def __str__(self):
+        return "{0}: {1}".format(self.item_type, self.item_description)
