@@ -63,7 +63,7 @@ class Hoard:
         gem_data = self.treasure_horde['Gems']
         gems = []
 
-        gems_present = sum(dice.roll_min('1d%'))
+        gems_present = sum(dice.roll('1d%'))
         if gems_present <= gem_data['chance']:
             gem_amount = sum(dice.roll(gem_data['amount']))
             for i in range(gem_amount):
@@ -76,7 +76,7 @@ class Hoard:
         jewelry_data = self.treasure_horde['Jewelery']
         jewelry = []
 
-        jewelry_present = sum(dice.roll_min('1d%'))
+        jewelry_present = sum(dice.roll('1d%'))
         if jewelry_present <= jewelry_data['chance']:
             gem_amount = sum(dice.roll(jewelry_data['amount']))
             for i in range(gem_amount):
@@ -89,7 +89,7 @@ class Hoard:
         magic_item_data = self.treasure_horde['Magic Items']
         magic_items = []
 
-        magic_items_present = sum(dice.roll_min('1d%'))
+        magic_items_present = sum(dice.roll('1d%'))
         if magic_items_present <= magic_item_data['chance']:
             for item in magic_item_data['items']:
                 magic_items.extend(self.create_magic_items(item))
