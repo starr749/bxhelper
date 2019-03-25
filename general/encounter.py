@@ -1,5 +1,6 @@
 import dice, json, argparse, texttable as tt
 from collections import OrderedDict
+from treasure.hoard import Hoard
 
 default_encounter_file = 'data/encounters/level{0}.json'
 
@@ -43,6 +44,13 @@ def print_table(encounter, surprise_possible):
         if heading == 'No.':
             number_roll = dice.roll(encounter[heading])
             row.append("{0} ({1} {2})".format(sum(number_roll), encounter[heading], number_roll))
+        elif heading == 'Treasure':
+            if len(encounter[heading]) == 1:
+                treasure = Hoard(encounter[heading])
+                row.append(str(treasure))
+            else:
+                row.append(encounter[heading])
+
         else:
             row.append(encounter[heading])
 
@@ -56,7 +64,7 @@ def print_table(encounter, surprise_possible):
                    else "{0} (Roll: {1})".format('No', surprise_roll))
 
     tab = tt.Texttable()
-    tab.set_max_width(150)
+    tab.set_max_width(200)
     align = ['c' for header in headings]
     tab.set_cols_align(align)
 
