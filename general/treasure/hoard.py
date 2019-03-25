@@ -99,7 +99,7 @@ class Hoard:
     def create_magic_items(self, item):
         items = []
 
-        for i in range(int(item['amount'])):
+        for i in range(int(dice.roll(item['amount']))):
 
             type_roll = int(dice.roll('1d{0}'.format(len(item['type'])))) -1
             type = item['type'][type_roll]
@@ -109,7 +109,8 @@ class Hoard:
         return items
 
     def __str__(self):
-        treasure_string = ""
+        treasure_string = ''
+
         if self.copper > 0:
             treasure_string = self.conditionally_add_line_break(treasure_string)
             treasure_string += "{0} Copper Coins".format(self.copper)
@@ -143,6 +144,11 @@ class Hoard:
         for item in self.magic_items:
             treasure_string = self.conditionally_add_line_break(treasure_string)
             treasure_string += str(item)
+
+        if treasure_string == '':
+            treasure_string += "Nil"
+
+        treasure_string += "\n(Average: {0} GP)".format(self.treasure_horde['Average'])
 
         return treasure_string
 
